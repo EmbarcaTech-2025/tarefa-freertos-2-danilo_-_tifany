@@ -42,7 +42,15 @@ pico_sdk_init()
 
 add_executable(embarcatech-tarefa-freertos-2
         src/main.c
-        lib/ssd1306/ssd1306.c)
+        lib/ssd1306/ssd1306.c
+        src/game.c
+        src/drivers/hardware_init.c
+        src/tasks/oled_task.c
+        src/tasks/player_task.c
+        src/tasks/game_logic.c
+        src/tasks/alien_task.c
+        src/tasks/bullet_task.c
+        )
 
 pico_set_program_name(embarcatech-tarefa-freertos-2 "embarcatech-tarefa-freertos-2")
 pico_set_program_version(embarcatech-tarefa-freertos-2 "0.1")
