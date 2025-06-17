@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include "FreeRTOS.h"
-#include "task.h"
+#include "pico/stdlib.h"
 #include "hardware/adc.h"
 #include "hardware/gpio.h"
 #include "game.h"
+#include "rgb.h"
+#include "effects_task.h"
+
 
 #define JOYSTICK_VRX_PIN 27
 #define BTN_B_PIN 6
@@ -26,11 +27,11 @@ void player_control_task(void *pvParameters) {
                 if (shoot_button_curr && !shoot_button_prev) {
                     g_game_state.current_game_internal_state = GAME_PLAYING;
                     initialize_game_data_unsafe();
+                    led_set_color(GREEN);  // Mantemos o led verde de início de jogo
                 }
             }
             else if (g_game_state.current_game_internal_state == GAME_PLAYING) {
 
-                // Movimento do player
                 int dead_zone = 200;
                 if (adc_x_raw < (2048 - dead_zone))
                     g_game_state.player_obj.x -= PLAYER_MOVE_STEP;
@@ -42,7 +43,6 @@ void player_control_task(void *pvParameters) {
                 if (g_game_state.player_obj.x > OLED_WIDTH - PLAYER_WIDTH)
                     g_game_state.player_obj.x = OLED_WIDTH - PLAYER_WIDTH;
 
-                // Lógica de tiro
                 TickType_t current_time = xTaskGetTickCount();
                 if (shoot_button_curr && !shoot_button_prev &&
                     (current_time - last_shot_time > pdMS_TO_TICKS(shot_debounce_ms))) {
@@ -54,6 +54,8 @@ void player_control_task(void *pvParameters) {
                             g_game_state.bullets[i].active = true;
                             g_game_state.bullets[i].x = g_game_state.player_obj.x + (PLAYER_WIDTH / 2);
                             g_game_state.bullets[i].y = PLAYER_Y_POS - 1;
+
+                            effect_send(EFFECT_PLAYER_SHOOT);  // Chamando o efeito centralizado
                             break;
                         }
                     }

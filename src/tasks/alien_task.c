@@ -3,6 +3,7 @@
 #include "task.h"
 #include "pico/rand.h"
 #include "game.h"
+#include "effects_task.h"
 
 #define ALIEN_STEP_X 5
 #define ALIEN_STEP_Y 5
@@ -32,6 +33,7 @@ void alien_logic_task(void *pvParameters) {
 
                                     if (g_game_state.aliens[r][c].y + ALIEN_HEIGHT >= g_game_state.player_obj.y) {
                                         g_game_state.current_game_internal_state = GAME_OVER;
+                                        effect_send(EFFECT_GAME_OVER);
                                         break;
                                     }
                                 }
@@ -112,8 +114,10 @@ void alien_logic_task(void *pvParameters) {
                         }
                     }
 
-                    if (all_destroyed)
+                    if (all_destroyed) {
                         g_game_state.current_game_internal_state = GAME_WIN;
+                        effect_send(EFFECT_GAME_WIN);
+                    }
                 }
             }
             xSemaphoreGive(g_game_state_mutex);
