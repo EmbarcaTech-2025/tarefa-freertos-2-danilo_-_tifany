@@ -64,6 +64,12 @@ Este projeto tem como objetivo desenvolver um jogo *Space Invaders* totalmente f
 
 ---
 
+## 📸 Demonstração do funcionamento
+
+<video width="720" height="1280" src="https://github.com/user-attachments/assets/d2ec15b0-f799-453d-997e-a3c7e0892bc1.mp4"></video>
+
+---
+
 ## 🚀 Importância do FreeRTOS neste Projeto
 
 O uso do **FreeRTOS** foi essencial para possibilitar:
@@ -184,12 +190,20 @@ make
 
 1. Conecte a Raspberry Pi Pico W no modo BOOTSEL.
 2. Copie o arquivo `.uf2` gerado para a placa.
-3. O jogo iniciará com a tela inicial aguardando o botão A para começar.
+3. O jogo iniciará com a tela inicial aguardando o botão B para começar.
 
 ---
 
 ## Resultados
 
+O projeto resultou em uma implementação completa e funcional do jogo Space Invaders na plataforma Raspberry Pi Pico W. A utilização do FreeRTOS foi fundamental para alcançar uma jogabilidade fluida e responsiva, com todas as funcionalidades propostas operando de forma concorrente e sincronizada.
+
+- **Gameplay Completo:** O jogo inclui movimentação do jogador via joystick, disparos, hordas de aliens com movimento progressivo, sistema de pontuação e vidas.
+- **Multitarefa Eficiente:** A divisão do sistema em tarefas independentes (jogador, aliens, tiros, display, efeitos) garantiu uma execução sem travamentos, mesmo durante a ocorrência de múltiplos eventos simultâneos.
+- **Integração de Periféricos:** O display OLED, buzzer, LED RGB, joystick e botões foram integrados com sucesso, proporcionando uma experiência interativa com feedback visual e sonoro em tempo real.
+- **Comunicação Assíncrona:** A implementação de uma task de efeitos (`effects_task`) com uma fila (`Queue`) para gerenciar sons e luzes de forma assíncrona foi uma solução eficaz que eliminou gargalos de processamento e piscadas no display.
+
+O resultado final é um sistema embarcado coeso que demonstra a aplicação prática e os benefícios de um RTOS no gerenciamento de aplicações interativas complexas.
 
 ---
 
