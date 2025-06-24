@@ -11,6 +11,10 @@
 
 static uint slice_red, slice_green, slice_blue;
 
+/*
+    Função responsável por inicializar o LED RGB, configurando os pinos
+    como saídas PWM e zerando o nível de brilho inicial.
+*/
 void led_init(void) {
     gpio_set_function(RED_PIN, GPIO_FUNC_PWM);
     gpio_set_function(GREEN_PIN, GPIO_FUNC_PWM);
@@ -32,13 +36,18 @@ void led_init(void) {
     pwm_set_gpio_level(BLUE_PIN, 0);
 }
 
+/*
+    Função responsável por definir a cor do LED RGB com base no valor
+    passado como parâmetro. O brilho de cada cor é ajustado utilizando
+    a modulação por largura de pulso (PWM).
+*/
 void led_set_color(led_color_t color) {
     pwm_set_gpio_level(RED_PIN, 0);
     pwm_set_gpio_level(GREEN_PIN, 0);
     pwm_set_gpio_level(BLUE_PIN, 0);
 
     uint16_t level = PWM_WRAP / 16;
-    uint16_t level_green = 20000 / 16; // Use the same channel of the buzzer
+    uint16_t level_green = 20000 / 16; // Utiliza o mesmo canal do buzzer
     
 
     switch (color) {

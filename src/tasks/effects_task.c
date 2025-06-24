@@ -62,7 +62,9 @@ void effects_task(void *pvParameters) {
     effect_event_t received_event;
 
     while (1) {
+        // Aguardando receber um evento da fila
         if (xQueueReceive(effects_queue, &received_event, portMAX_DELAY) == pdPASS) {
+            // Executando o efeito correspondente ao evento recebido
             execute_effect(received_event);
         }
     }

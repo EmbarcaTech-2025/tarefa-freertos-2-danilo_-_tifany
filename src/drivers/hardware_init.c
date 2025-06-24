@@ -13,6 +13,9 @@
 #define I2C_PORT i2c1
 #define OLED_ADDRESS 0x3C
 
+/**
+ * @brief Inicializa o joystick (ADC) e os botões (GPIO).
+ */
 void init_joystick_and_buttons(void) {
     adc_init();
     adc_gpio_init(JOYSTICK_VRX_PIN);
@@ -24,6 +27,9 @@ void init_joystick_and_buttons(void) {
     gpio_pull_up(5);
 }
 
+/**
+ * @brief Inicializa o display OLED (I2C).
+ */
 void init_oled(void) {
     i2c_init(I2C_PORT, 400 * 1000);
     gpio_set_function(I2C_SDA_PIN, GPIO_FUNC_I2C);
@@ -37,6 +43,9 @@ void init_oled(void) {
     ssd1306_show(&oled_display);
 }
 
+/**
+ * @brief Inicializa o buzzer e o LED RGB.
+ */
 void init_buzzer_rgb(void) {
     led_init();
     buzzer_init();

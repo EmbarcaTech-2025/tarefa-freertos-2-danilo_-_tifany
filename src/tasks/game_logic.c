@@ -25,6 +25,7 @@ void initialize_game_data_unsafe() {
     g_game_state.lives = 3;
 }
 
+// Esta função é responsável pela tarefa de status do jogo
 void game_status_task(void *pvParameters) {
     while (1)
         vTaskDelay(pdMS_TO_TICKS(500));
