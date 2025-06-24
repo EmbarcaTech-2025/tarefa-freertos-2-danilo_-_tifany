@@ -38,7 +38,7 @@ int main() {
     }
     
 
-    led_set_color(GREEN);
+    led_set_color(PURPLE);
 
     xTaskCreate(oled_display_task, "OLED", 512, NULL, 2, NULL);
     xTaskCreate(player_control_task, "Player", 256, NULL, 3, NULL);

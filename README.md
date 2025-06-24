@@ -40,9 +40,9 @@ Este projeto tem como objetivo desenvolver um jogo *Space Invaders* totalmente f
 | Pino RP2040 | Função  | Descrição                 |
 |-------------|---------|---------------------------|
 | GPIO 10     | PWM     | Saída para o Buzzer       |
-| GPIO 13     | GPIO    | LED RGB - RED             |
-| GPIO 11     | GPIO    | LED RGB - GREEN           |
-| GPIO 12     | GPIO    | LED RGB - BLUE            |
+| GPIO 13     | PWM     | LED RGB - RED             |
+| GPIO 11     | PWM     | LED RGB - GREEN           |
+| GPIO 12     | PWM     | LED RGB - BLUE            |
 | GPIO 27     | ADC1    | Joystick eixo X           |
 | GPIO 14     | I2C SDA | Comunicação com OLED      |
 | GPIO 15     | I2C SCL | Comunicação com OLED      |

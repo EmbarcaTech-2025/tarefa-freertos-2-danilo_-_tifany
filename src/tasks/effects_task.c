@@ -26,33 +26,31 @@ static void execute_effect(effect_event_t event) {
     switch (event) {
         case EFFECT_PLAYER_SHOOT:
             buzzer_play(220, 50);
-            led_set_color_rgb(1, 1, 1);
+            led_set_color(AQUA);
             vTaskDelay(pdMS_TO_TICKS(50));
-            led_set_color_rgb(0, 0, 0);
+            led_set_color(OFF);
             break;
 
         case EFFECT_ALIEN_HIT:
             buzzer_play(160, 100);
-            led_set_color_rgb(1, 1, 0);
+            led_set_color(BLUE);
             vTaskDelay(pdMS_TO_TICKS(100));
-            led_set_color_rgb(0, 0, 0);
+            led_set_color(OFF);
             break;
 
         case EFFECT_PLAYER_HIT:
             buzzer_play(100, 200);
-            led_set_color_rgb(1, 0, 1);
+            led_set_color(RED);
             vTaskDelay(pdMS_TO_TICKS(200));
-            led_set_color_rgb(0, 0, 0);
+            led_set_color(OFF);
             break;
 
         case EFFECT_GAME_OVER:
-            buzzer_play(80, 500);
-            led_set_color_rgb(1, 0, 0);
+            led_set_color(RED);
             break;
 
         case EFFECT_GAME_WIN:
-            buzzer_play(880, 500);
-            led_set_color_rgb(0, 0, 1);
+            led_set_color(BLUE);
             break;
 
         default:
